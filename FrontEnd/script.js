@@ -1,8 +1,8 @@
 let works = fetch("http://localhost:5678/api/works")
-    .then(res => res.json())
+    .then(response => response.json())
     .then(data => {
         let display = ""
-        //console.log(data)
+        //console.log("données récupérées : ", data)
         for(let figure of data){
             display += `
             <figure "${figure.id}">
@@ -18,6 +18,6 @@ let works = fetch("http://localhost:5678/api/works")
 
     .catch(err => {
         console.log("dans le catch")
-        console.log(err)
+        console.log("une erreur est survenue : ", err)
     })
 console.log (works)
