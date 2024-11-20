@@ -24,7 +24,7 @@ async function fetchWorks() {
         document.querySelector(".gallery").innerHTML = display
 
         // Sélectionne tous les boutons de filtrage
-        const buttons = document.querySelectorAll(".btn-filtre")
+        const buttons = document.querySelectorAll(".btn-filter")
 
         // Ajoute un événement "click" à chaque bouton de filtrage
         buttons.forEach(button => {
@@ -53,8 +53,8 @@ function btnFilter(event, data, buttons) {
     const categoryId = parseInt(button.id)
 
     // Gestion de la classe active pour le bouton filtré
-    buttons.forEach(btn => btn.classList.remove("btn-filtreActive")) // Retirer la classe "active" des autres boutons
-    button.classList.add("btn-filtreActive") // Ajouter la classe "active" au bouton cliqué
+    buttons.forEach(btn => btn.classList.remove("btn-filterActive")) // Retirer la classe "active" des autres boutons
+    button.classList.add("btn-filterActive") // Ajouter la classe "active" au bouton cliqué
 
     // Si l'ID de catégorie est 0 --> on afficher toutes les images
     if (categoryId === 0) {
