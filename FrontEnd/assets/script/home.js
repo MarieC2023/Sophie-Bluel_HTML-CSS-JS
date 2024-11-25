@@ -30,7 +30,7 @@ async function fetchWorks() {
         buttons.forEach(button => {
             button.addEventListener("click", (event) => {
                 // Lorsqu'un bouton est cliqué, on appelle la fonction de filtrage
-                btnFilter(event, data, buttons);
+                btnFilter(event, data, buttons)
             })
         })
 
@@ -58,16 +58,16 @@ function btnFilter(event, data, buttons) {
 
     // Si l'ID de catégorie est 0 --> on afficher toutes les images
     if (categoryId === 0) {
-        displayAllImages(data); // Affiche toutes les images
+        displayAllImages(data) // Affiche toutes les images
     } else {
         // Sinon, on affiche les images correspondant à la catégorie sélectionnée
-        displayImagesByCategory(categoryId, data);
+        displayImagesByCategory(categoryId, data)
     }
 }
 
 // Fonction pour afficher toutes les images
 function displayAllImages(data) {
-    let display = "";
+    let display = ""
     // On parcourt toutes les œuvres et on crée le code HTML
     for (let figure of data) {
         display += `
@@ -75,10 +75,10 @@ function displayAllImages(data) {
                 <img src="${figure.imageUrl}" alt="${figure.title}">
                 <figcaption>${figure.title}</figcaption>
             </figure>
-        `;
+        `
     }
     // On insère le code HTML dans la galerie
-    document.querySelector(".gallery").innerHTML = display;
+    document.querySelector(".gallery").innerHTML = display
 }
 
 // Fonction pour afficher les images d'une catégorie spécifique
@@ -86,7 +86,7 @@ function displayImagesByCategory(categoryId, data) {
     // On filtre les œuvres qui correspondent à la catégorie sélectionnée
     const filteredData = data.filter(item => item.categoryId === categoryId);
 
-    let display = "";
+    let display = ""
     // On crée le code HTML pour chaque œuvre filtrée
     for (let figure of filteredData) {
         display += `
@@ -94,8 +94,8 @@ function displayImagesByCategory(categoryId, data) {
                 <img src="${figure.imageUrl}" alt="${figure.title}">
                 <figcaption>${figure.title}</figcaption>
             </figure>
-        `;
+        `
     }
     // On insère le code HTML filtré dans la galerie
-    document.querySelector(".gallery").innerHTML = display;
+    document.querySelector(".gallery").innerHTML = display
 }
