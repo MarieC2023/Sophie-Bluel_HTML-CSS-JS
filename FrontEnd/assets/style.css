@@ -49,7 +49,7 @@ table {
 /** end reset css**/
 body {
 	max-width: 1140px;
-	margin:auto;
+	margin: auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 	background-color: #fffef8;
@@ -60,14 +60,23 @@ header {
 	margin: 50px 0
 }
 
-.edit-mode{
-	display: none;
+/* Mode édition quand l'utilisateur est connecté*/
+
+.edit-mode {
+	display: none; 
 	align-items: center;
     justify-content: center;
 	background-color: black;
 	color: white;
-	padding: 10px;
+	width: 100vw;
+	height: 59px;
+	gap: 21px;
+	font-size: 16px;
+	font-weight: 400;  
+	margin-left: calc(50% - 50vw); 
 }
+
+/* Fin mode édition*/
 
 section {
 	margin: 50px 0
