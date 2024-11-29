@@ -99,3 +99,34 @@ function displayImagesByCategory(categoryId, data) {
     // On insère le code HTML filtré dans la galerie
     document.querySelector(".gallery").innerHTML = display
 }
+
+
+// Fonction pour afficher la bannière si le token est validé
+function editMode() {
+    // On va chercher les éléments qu'on souhaite modifier
+    const editBanner = document.getElementById("edit-banner")
+    const logintLink = document.getElementById("login-link")
+    const logoutLink = document.getElementById("logout-link")
+    const filter = document.getElementById("buttons")
+    const changeButton = document.getElementById ("change-button")
+
+    // On récupère le token depuis le localStorage
+    const userToken = localStorage.getItem("accessToken")
+
+    // On vérifie si le token est présent et valide
+    const isTokenValide = !!userToken
+    
+    if(isTokenValide){
+        // On applique les modification lié à la connexion admin
+        editBanner.style.display = "flex"
+        logintLink.style.display = "none"
+        logoutLink.style.display = "flex"
+        filter.style.display = "none"
+        changeButton.style.display = "flex"
+    } else{
+        console.log ("erreur")
+    }
+}
+editMode()
+
+

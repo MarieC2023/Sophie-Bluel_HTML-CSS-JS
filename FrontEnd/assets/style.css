@@ -62,7 +62,7 @@ header {
 
 /* Mode édition quand l'utilisateur est connecté*/
 
-.edit-mode {
+#edit-banner {
 	display: none; 
 	align-items: center;
     justify-content: center;
@@ -74,6 +74,14 @@ header {
 	font-size: 16px;
 	font-weight: 400;  
 	margin-left: calc(50% - 50vw); 
+}
+
+#logout-link{
+	display: none;
+}
+
+#login-link{
+	display:flex;
 }
 
 /* Fin mode édition*/
@@ -148,6 +156,8 @@ li a:hover {
 #introduction p {
 	margin-bottom: 0.5em;
 }
+
+
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 1em;

@@ -15,7 +15,7 @@
 </head>
 <body>
 <!-- Mode administrateur -->
-	<aside class="edit-mode">
+	<aside id="edit-banner">
 		<i class="fa-regular fa-pen-to-square"></i>
 		<p>Mode édition</p>
 	</aside>
@@ -28,7 +28,8 @@
 		<ul>
 			<li><a href="#portfolio">projets</a></li>
 			<li><a href="#contact">contact</a></li>
-			<li id="logout"><a href="login.html">login</a></li>
+			<li id="login-link"><a href="login.html">login</a></li>
+			<li id="logout-link">logout</li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
@@ -47,14 +48,18 @@
 	</section>
 	<section id="portfolio">
 		<h2>Mes Projets</h2>
+		<!-- Mode administrateur -->
+		<!-- <aside id="change-button">
+			<i class="fa-regular fa-pen-to-square"></i>
+			<p>modifier</p>
+		</aside> -->
+		<!-- Fin mode administrateur -->
 		<div id="buttons">
 			<button id="0" class="btn-filter btn-filterActive">Tous</button>
 			<button id="1" class="btn-filter">Objets</button>
 			<button id="2" class="btn-filter">Appartements</button>
 			<button id="3" class="btn-filter">Hôtels & restaurants</button>
-		</div>
-		
-			
+		</div>		
 		<div class="gallery">
 		</div>
 	</section>
