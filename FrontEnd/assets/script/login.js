@@ -47,7 +47,7 @@ document.getElementById("submit").addEventListener("click", async (event) => {
         console.log("Token récupéré :", token)
 
         // Stocke le token dans le localStorage pour une utilisation ultérieure
-        localStorage.setItem("accessToken", token)
+        sessionStorage.setItem("accessToken", token)
         console.log("Token stocké avec succès")
 
         // Affiche un message de succès dans la console

@@ -78,11 +78,36 @@ header {
 
 #logout-link{
 	display: none;
+	cursor: pointer;
 }
 
 #login-link{
 	display:flex;
 }
+ 
+#portfolio-container{
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+}
+#portfolio-title{
+	display: flex;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
+	gap: 15px;
+
+}
+
+#change-button{
+	display: none;
+	align-items: center;
+	align-content: center;
+	gap: 5px;
+	margin-bottom: 30px;
+	cursor: pointer;
+}   
+
 
 /* Fin mode édition*/
 

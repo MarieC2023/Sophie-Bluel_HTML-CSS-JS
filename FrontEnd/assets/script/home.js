@@ -111,7 +111,7 @@ function editMode() {
     const changeButton = document.getElementById ("change-button")
 
     // On récupère le token depuis le localStorage
-    const userToken = localStorage.getItem("accessToken")
+    const userToken = sessionStorage.getItem("accessToken")
 
     // On vérifie si le token est présent et valide
     const isTokenValide = !!userToken
@@ -129,4 +129,19 @@ function editMode() {
 }
 editMode()
 
+// Fonction de déconnexion
+function logoutUser() {
+    sessionStorage.removeItem("accessToken")
+    window.location.href = "index.html"
+}
 
+// Ajoute un événement "click" au bouton logout
+document.addEventListener("DOMContentLoaded", () => {
+    const logoutLink = document.getElementById("logout-link")
+    if (logoutLink) {
+        logoutLink.addEventListener("click", (event) => {
+            event.preventDefault()
+            logoutUser() 
+        })
+    }
+})
