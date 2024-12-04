@@ -19,15 +19,26 @@
 		<i class="fa-regular fa-pen-to-square"></i>
 		<p>Mode édition</p>
 	</aside>
-	<aside id="modal" class="modal show" role="dialog">
-		<div class="modal-content">
-			<a href="#" class="modal-close" data-dismiss="dialog">
+	<aside class="modal-container">
+		<div class="overlay modal-trigger"> </div>
+		<div class="modal" role="dialog" aria-labelledby="modalTitle">
+			<a href="#" class="close-modal modal-trigger"
+			aria-label="close modal">
 				<i class="fa-solid fa-xmark"></i>
 			</a>
-			<div class="modal-header">
+			<div id="modalTitle" class="modal-title">
 				Galerie Photo
 			</div>
-			<div class="modal-body"></div>
+			<div class="modal-body">
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+			Esse, consectetur! Aliquid tempore dolore odio deserunt. 
+			Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+			Voluptates ullam eum quam asperiores nemo officiis repudiandae 
+			veritatis alias dolore velit culpa iste illum, necessitatibus 
+			aperiam ipsum molestias deserunt voluptatem sint maiores iure 
+			suscipit! Omnis eligendi qui, ipsa nihil eaque veritatis fugiat harum. 
+			Fugit, modi sequi non laborum quae eaque ipsa.</p>
+			</div>
 			<div class="modal-footer">
 				<a href="#" class="btn btn-add" role="button">Ajouter une photo</a>
 			</div>
@@ -66,12 +77,9 @@
 			<h2 id=portfolio-title>Mes Projets</h2>
 			<!-- Mode administrateur -->
 			<div id="change-button">
-				<a href="#" role="button" data-target="#modal"
-				data-toggle="modal">
+				<a href="#" role="button" class="modal-trigger">
 					<i class="fa-regular fa-pen-to-square"></i>Modifier
-					
-				</a>
-				
+					</a>
 			</div> 
 			<!-- Fin mode administrateur -->
 		</div>
@@ -108,5 +116,6 @@
 	</nav>
 </footer>
 <script src="./assets/script/home.js"></script>
+<script src="./assets/script/modal.js"></script>
 </body>
 </html>
