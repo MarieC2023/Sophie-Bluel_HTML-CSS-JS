@@ -19,6 +19,21 @@
 		<i class="fa-regular fa-pen-to-square"></i>
 		<p>Mode édition</p>
 	</aside>
+	<aside id="modal" class="modal show" role="dialog">
+		<div class="modal-content">
+			<a href="#" class="modal-close" data-dismiss="dialog">
+				<i class="fa-solid fa-xmark"></i>
+			</a>
+			<div class="modal-header">
+				Galerie Photo
+			</div>
+			<div class="modal-body"></div>
+			<div class="modal-footer">
+				<a href="#" class="btn btn-add" role="button">Ajouter une photo</a>
+			</div>
+			
+		</div>
+	</aside>
 <!-- Fin mode administrateur -->
 <header>
 	<h1>Sophie Bluel 
@@ -51,8 +66,12 @@
 			<h2 id=portfolio-title>Mes Projets</h2>
 			<!-- Mode administrateur -->
 			<div id="change-button">
-				<i class="fa-regular fa-pen-to-square"></i>
-				<p>modifier</p>
+				<a href="#" role="button" data-target="#modal"
+				data-toggle="modal">
+					<i class="fa-regular fa-pen-to-square"></i>Modifier
+					
+				</a>
+				
 			</div> 
 			<!-- Fin mode administrateur -->
 		</div>
@@ -63,6 +82,7 @@
 			<button id="3" class="btn-filter">Hôtels & restaurants</button>
 		</div>		
 		<div class="gallery">
+			<!-- Généré dynamiquement -->
 		</div>
 	</section>
 	<section id="contact">
