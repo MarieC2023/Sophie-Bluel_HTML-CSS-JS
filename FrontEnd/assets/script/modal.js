@@ -11,6 +11,7 @@ async function fetchWorksForModal() {
             display += `
                 <figure id="modal-figure-${figure.id}">
                     <img src="${figure.imageUrl}" alt="${figure.title}">
+                    <i class="fa-solid fa-trash-can delete-btn"></i>
                 </figure>
             `;
         }
