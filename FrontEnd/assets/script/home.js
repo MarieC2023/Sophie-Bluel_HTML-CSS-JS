@@ -10,7 +10,7 @@ async function fetchWorks() {
         // Variable pour accumuler le code HTML qui sera inséré dans la page
         let display = ""
 
-        // Parcours des données récupérées pour créer les balises HTML pour chaque œuvre
+        // Parcours chaque projet (figure) et créer les balises HTML pour chaque œuvre
         for (let figure of data) {
             display += `
             <figure id="${figure.id}">
