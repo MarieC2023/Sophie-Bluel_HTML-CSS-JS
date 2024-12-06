@@ -2,24 +2,24 @@
 async function fetchWorksForModal() {
     try {
         // Requête pour récupérer les données depuis l'API
-        const response = await fetch("http://localhost:5678/api/works");
-        const data = await response.json();
+        const response = await fetch("http://localhost:5678/api/works")
+        const data = await response.json()
 
         // Générer les éléments HTML pour la galerie
-        let display = "";
+        let display = ""
         for (let figure of data) {
             display += `
                 <figure id="modal-figure-${figure.id}">
                     <img src="${figure.imageUrl}" alt="${figure.title}">
                     <i class="fa-solid fa-trash-can delete-btn"></i>
                 </figure>
-            `;
+            `
         }
 
         // Injecter le contenu dans la galerie modale
         document.querySelector(".modal-gallery").innerHTML = display;
     } catch (err) {
-        console.error("Une erreur est survenue lors du chargement des images : ", err);
+        console.error("Une erreur est survenue lors du chargement des images : ", err)
     }
 }
 
@@ -36,7 +36,7 @@ function toggleModal(){
 
     if (modalContent.classList.contains("active")) {
         // Charger la galerie photo dans la modale
-        fetchWorksForModal();
+        fetchWorksForModal()
     }
 }
 

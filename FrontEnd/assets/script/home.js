@@ -3,14 +3,12 @@ async function fetchWorks() {
     try {
         // Envoi de la requête pour récupérer les œuvres depuis l'API locale
         const response = await fetch("http://localhost:5678/api/works")
-
-        // On parse la réponse JSON (données retournées par l'API)
         const data = await response.json()
 
-        // Variable pour accumuler le code HTML qui sera inséré dans la page
+        // Générer les éléments HTML pour la galerie
         let display = ""
 
-        // Parcours chaque projet (figure) et créer les balises HTML pour chaque œuvre
+            // Parcours chaque projet (figure) et créer les balises HTML pour chaque œuvre
         for (let figure of data) {
             display += `
             <figure id="${figure.id}">
