@@ -22,28 +22,6 @@
 		<i class="fa-regular fa-pen-to-square"></i>
 		<p>Mode édition</p>
 	</aside>
-	<aside class="modal-container">
-		<div class="overlay modal-trigger"> </div>
-		<!-- <div class="modal1"> -->
-			<div class="modal" role="dialog" aria-labelledby="modalTitle">
-				<a href="#" class="close-modal modal-trigger" aria-label="close modal">
-					<i class="fa-solid fa-xmark"></i>
-				</a>
-				<div id="modalTitle" class="modal-title">
-					Galerie Photo
-				</div>
-				<div class="modal-gallery delete-btn">
-					<!-- Généré dynamiquement -->
-				</div>
-				<div class="modal-footer">
-					<a href="#" class="btn btn-add" role="button">Ajouter une photo</a>
-				</div>
-			</div>
-		<!-- </div>
-		<div class="modal2">
-
-		</div> -->
-	</aside>
 	<!-- Fin mode administrateur -->
 	<header>
 		<h1>Sophie Bluel
@@ -86,6 +64,24 @@
 				</div>
 				<!-- Fin mode administrateur -->
 			</div>
+			<dialog id="modal-dialog" class="modal-container">
+				<div class="modal-trigger"> </div>
+					<div class="modal" role="dialog" aria-labelledby="modalTitle">
+						<a href="#" class="close-modal modal-trigger" aria-label="close modal">
+							<i class="fa-solid fa-xmark"></i>
+						</a>
+						<h3 id="modalTitle" class="modal-title">
+							Galerie Photo
+						</h3>
+						<div class="modal-gallery delete-btn">
+							<!-- Généré dynamiquement -->
+						</div>
+						<div class="modal-footer">
+							<a href="#" class="btn btn-add" role="button">Ajouter une photo</a>
+						</div>
+					</div>
+				
+			</dialog>
 			<div id="buttons">
 				<button id="0" class="btn-filter btn-filterActive">Tous</button>
 				<button id="1" class="btn-filter">Objets</button>

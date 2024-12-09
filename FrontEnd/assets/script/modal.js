@@ -23,19 +23,28 @@ async function fetchWorksForModal() {
     }
 }
 
+const modalContent = document.getElementById("modal-dialog");
+const modalTriggers = document.querySelectorAll(".modal-trigger"); // Tous les éléments avec la classe modal-trigger
 
-//const modalContent = document.getElementById("modal")
-const modalContent = document.querySelector(".modal-container");
-const modalTriggers = document.querySelectorAll(".modal-trigger");
-
-// Ouverture et fermeture de la modale
+// Fonction pour ouvrir/fermer la modale
 modalTriggers.forEach(trigger => trigger.addEventListener("click", toggleModal));
 
-function toggleModal() {
-    modalContent.classList.toggle("active");
-
-    if (modalContent.classList.contains("active")) {
-        // Charger la galerie photo dans la modale
-        fetchWorksForModal();
+// Fonction pour fermer la modale via l'overlay
+document.querySelector('dialog').addEventListener('click', function(e) {
+    if(!e.target.closest('div')) {
+      e.target.close();
     }
+  });
+
+function toggleModal(event) {
+  event.preventDefault(); // Empêche les comportements par défaut des liens
+  
+  // Vérifie si la modale est déjà ouverte
+  if (modalContent.hasAttribute("open")) {
+    modalContent.close(); 
+  } else {
+    modalContent.showModal(); 
+    // Charger la galerie photo dans la modale
+    fetchWorksForModal();
+  }
 }
