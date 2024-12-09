@@ -1,3 +1,11 @@
+////////////////////////////////////////
+///// Gestion de la page d'accueil /////
+////////////////////////////////////////
+
+    ////////////////////////////////////
+    ///// Récupération des oeuvres /////
+    ////////////////////////////////////
+
 // Fonction principale qui récupère les œuvres depuis l'API
 async function fetchWorks() {
     try {
@@ -38,6 +46,10 @@ async function fetchWorks() {
         console.log("une erreur est survenue : ", err);
     }
 }
+
+    ////////////////////////////////////////////////////////
+    ///// Gestion de l'affichage des oeuvres - Filtres /////
+    ////////////////////////////////////////////////////////
 
 // Appel de la fonction pour récupérer et afficher les œuvres
 fetchWorks();
@@ -98,6 +110,10 @@ function displayImagesByCategory(categoryId, data) {
     document.querySelector(".gallery").innerHTML = display;
 }
 
+
+    //////////////////////////////////////////////
+    ///// Gestion de la page en mode édition /////
+    //////////////////////////////////////////////
 
 // Fonction pour afficher la bannière si le token est validé
 function editMode() {

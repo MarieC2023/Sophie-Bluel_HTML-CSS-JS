@@ -1,4 +1,6 @@
-//page login
+////////////////////////////
+///// Gestion du login /////
+////////////////////////////
 
 // Ajoute un écouteur d'événement sur submit
 document.getElementById("submit").addEventListener("click", async (event) => {
@@ -46,7 +48,7 @@ document.getElementById("submit").addEventListener("click", async (event) => {
         const token = data.token;
         console.log("Token récupéré :", token);
 
-        // Stocke le token dans le localStorage pour une utilisation ultérieure
+        // Stocke le token dans le sessionStorage pour une utilisation ultérieure
         sessionStorage.setItem("accessToken", token);
         console.log("Token stocké avec succès");
 

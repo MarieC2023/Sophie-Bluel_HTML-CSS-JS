@@ -1,3 +1,11 @@
+////////////////////////////////
+///// Gestion de la modale /////
+////////////////////////////////
+
+    ////////////////////////////////////
+    ///// Récupération des oeuvres /////
+    ////////////////////////////////////
+
 // Fonction pour récupérer les oeuvres depuis l'API pour la mini Galerie
 async function fetchWorksForModal() {
     try {
@@ -23,16 +31,21 @@ async function fetchWorksForModal() {
     }
 }
 
+
+    //////////////////////////////////////////////////////
+    ///// Gestion ouverture / fermeture de la modale /////
+    //////////////////////////////////////////////////////
+
 const modalContent = document.getElementById("modal-dialog");
-const modalTriggers = document.querySelectorAll(".modal-trigger"); // Tous les éléments avec la classe modal-trigger
+const modalTriggers = document.querySelectorAll(".modal-trigger"); 
 
 // Fonction pour ouvrir/fermer la modale
 modalTriggers.forEach(trigger => trigger.addEventListener("click", toggleModal));
 
-// Fonction pour fermer la modale via l'overlay
+// Fonction pour fermer la modale via l'overlay en complément de la fonction toogleModal
 document.querySelector('dialog').addEventListener('click', function(e) {
-    if(!e.target.closest('div')) {
-      e.target.close();
+    if(e.target === this) {
+      this.close();
     }
   });
 
@@ -48,3 +61,14 @@ function toggleModal(event) {
     fetchWorksForModal();
   }
 }
+
+    /////////////////////////////////////////////
+    ///// Gestion de la suppression d'image /////
+    /////////////////////////////////////////////
+
+
+
+
+    //////////////////////////////////////
+    ///// Gestion de l'ajout d'image /////
+    //////////////////////////////////////
