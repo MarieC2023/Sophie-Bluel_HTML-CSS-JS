@@ -57,31 +57,54 @@
 			<div id="portfolio-container">
 				<h2 id=portfolio-title>Mes Projets</h2>
 				<!-- Mode administrateur -->
-				<div id="change-button">
-					<a href="#" role="button" class="modal-trigger">
-						<i class="fa-regular fa-pen-to-square"></i>Modifier
-					</a>
-				</div>
-				<!-- Fin mode administrateur -->
+				
+				<button data-open-modal> <i class="fa-regular fa-pen-to-square"></i>Modifier</button>
+				<dialog data-modal>
+					<button data-close-modal><i class="fa-solid fa-xmark"></i></button>
+					<h3 id="modalTitle" class="modal-title">
+						Galerie Photo
+					</h3>
+				
+					<div class="modal-gallery delete-btn">
+						<!-- Généré dynamiquement -->
+					</div>
+					<div class="line"></div>
+					<button class="btn">Ajouter une photo</button>
+				</dialog>
+		
+				
+				
 			</div>
-			<dialog id="modal-dialog" class="modal-container">
-				<div class="modal-trigger"> </div>
+			
+
+
+<!-- 2e partie de modale à poursuivre -->
+
+				<!-- <div id="modal2" style="display: none;">
 					<div class="modal" role="dialog" aria-labelledby="modalTitle">
 						<a href="#" class="close-modal modal-trigger" aria-label="close modal">
 							<i class="fa-solid fa-xmark"></i>
 						</a>
+						<a href="#" class="return-modal modal-trigger" aria-label="return">
+							<i class="fa-solid fa-arrow-left"></i>
+						</a>
 						<h3 id="modalTitle" class="modal-title">
-							Galerie Photo
+							Ajout photo
 						</h3>
-						<div class="modal-gallery delete-btn">
-							<!-- Généré dynamiquement -->
-						</div>
+						<form action="#" method="post">
+							<label for="name">+ Ajouter photo</label>
+							<input type="text" name="name" id="name">
+							<label for="email">Titre</label>
+							<input type="email" name="email" id="email">
+							<label for="">Catégorie</label>
+						</form>
 						<div class="modal-footer">
-							<a href="#" class="btn btn-add" role="button">Ajouter une photo</a>
+							<input class="btn btn-add" type="submit" value="Valider">
 						</div>
-					</div>
-				
+					</div>	
+				</div> -->
 			</dialog>
+			<!-- Fin mode administrateur -->
 			<div id="buttons">
 				<button id="0" class="btn-filter btn-filterActive">Tous</button>
 				<button id="1" class="btn-filter">Objets</button>

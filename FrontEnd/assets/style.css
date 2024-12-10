@@ -99,73 +99,46 @@ header {
 
 }
 
-#change-button{
+
+/* Gestion de la modale */
+[data-open-modal]{
 	display: none;
 	align-items: center;
 	align-content: center;
 	gap: 5px;
 	margin-bottom: 30px;
 	cursor: pointer;
-}  
-
-#change-button a{
-	text-decoration: none;
-	color: black;
-	display: flex;
-	gap: 5px
-}
-
-/* Gestion de la modale */
-
-.modal-container {
-    visibility: hidden;
-    opacity: 0;
+	background-color: transparent;
     border: none;
-    transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
+    color: black;
 }
 
-.modal-container[open] {
-    visibility: visible;
-    opacity: 1;
-    width: 95%;
-    max-width: 630px;
-    min-width: 300px;
-    padding: 30px;
-    background-color: #FFFFFF;
-    border-radius: 10px;
-    transition: opacity 0.3s ease-in-out, visibility 0s linear;
-}
-
-.modal-container::backdrop {
-    opacity: 0;
+dialog::backdrop{
     background-color: rgba(0, 0, 0, 0.3);
-    transition: opacity 0.3s ease-in-out;
 }
 
-.modal-container[open]::backdrop {
-    opacity: 1;
-    transition: opacity 0.3s ease-in-out;
+
+[data-modal]{
+	/* width: 95%; */
+	max-width: 630px;
+	min-width: 300px;
+	padding: 30px;
+	background-color: #FFFFFF;
+	border-radius: 10px;
+	border: none;
 }
 
-.modal {
-    opacity: 0;
-	position: relative;
-  	z-index: 2;
-    transition: opacity 0.3s ease-in-out;
-}
 
-.modal-container[open] .modal {
-    opacity: 1;
-    transition: opacity 0.3s ease-in-out;
-}
 
-.close-modal{
+[data-close-modal]{
 	position: absolute;
 	top: 10px;
 	right: 10px;
 	cursor: pointer;
 	width: 24px;
 	height: 24px;
+	border: none;
+	background-color: transparent;
 }
 
 .modal-title{
@@ -218,15 +191,15 @@ header {
     cursor: pointer;
 }
 
-.modal-footer{
+
+.line{
+	border-top: 1px solid #B3B3B3;
 	display: flex;
 	justify-content: center;
 	margin: 30px auto;
-	margin-bottom: 0;
+	/* margin-bottom: 0; */
 	width: 75%;
-	border-top: 1px solid #B3B3B3;
-}
-
+ }
 
 .btn{
 	font-family: 'Syne';
@@ -244,7 +217,9 @@ header {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	border: none;
 }
+
 /* Fin de la modale */
 
 /* Fin mode édition*/

@@ -122,7 +122,7 @@ function editMode() {
     const logintLink = document.getElementById("login-link");
     const logoutLink = document.getElementById("logout-link");
     const filter = document.getElementById("buttons");
-    const changeButton = document.getElementById("change-button");
+    const changeButton = document.querySelector("[data-open-modal");
 
     // On récupère le token depuis le localStorage
     const userToken = sessionStorage.getItem("accessToken");
