@@ -36,20 +36,20 @@ async function fetchWorksForModal() {
     ///// Gestion ouverture / fermeture de la modale /////
     //////////////////////////////////////////////////////
 
-    const openButton = document.querySelector("[data-open-modal");
-    const closeButton = document.querySelector("[data-close-modal");
-    const modal = document.querySelector("[data-modal");
+const openButton = document.querySelector("[data-open-modal]");
+const closeButton = document.querySelector("[data-close-modal]");
+const modal = document.querySelector("[data-modal]");
     
-    // Ouverture de la modale et chargement de la galerie
-    openButton.addEventListener("click", () => {
-      modal.showModal();
-      fetchWorksForModal();
-    })
+// Ouverture de la modale et chargement de la galerie
+openButton.addEventListener("click", () => {
+    modal.showModal();
+    fetchWorksForModal();
+})
     
-    // Fermeture de la modale
-    closeButton.addEventListener("click", () => {
-      modal.close();
-    })
+// Fermeture de la modale
+closeButton.addEventListener("click", () => {
+    modal.close();
+})
 
     
 // Fermer la modale en cliquant sur l'overlay

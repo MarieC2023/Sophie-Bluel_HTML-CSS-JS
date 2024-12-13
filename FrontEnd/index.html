@@ -81,29 +81,42 @@
 <!-- 2e partie de modale à poursuivre -->
 
 				<!-- <div id="modal2" style="display: none;">
-					<div class="modal" role="dialog" aria-labelledby="modalTitle">
-						<a href="#" class="close-modal modal-trigger" aria-label="close modal">
-							<i class="fa-solid fa-xmark"></i>
-						</a>
-						<a href="#" class="return-modal modal-trigger" aria-label="return">
-							<i class="fa-solid fa-arrow-left"></i>
-						</a>
+					<dialog data-modal id="modal2">
+						<button data-return-modal1><i class="fa-solid fa-arrow-left"></i></button>
+						<button data-close-modal><i class="fa-solid fa-xmark"></i></button>
 						<h3 id="modalTitle" class="modal-title">
-							Ajout photo
+						Ajout photo
 						</h3>
-						<form action="#" method="post">
-							<label for="name">+ Ajouter photo</label>
-							<input type="text" name="name" id="name">
-							<label for="email">Titre</label>
-							<input type="email" name="email" id="email">
-							<label for="">Catégorie</label>
-						</form>
-						<div class="modal-footer">
-							<input class="btn btn-add" type="submit" value="Valider">
+				
+						<form method="post"action="" enctype="multipart/form-data">
+					
+						<div class="form-group-photo">
+							<i class="fa-regular fa-image"></i>
+							<label for="photo">+ Ajouter photo</label>
+							<input type="file" name="photo" id="photo" class="js-image">
 						</div>
-					</div>	
-				</div> -->
-			</dialog>
+					
+						<div class="form-group-title">
+							<label for="titre">Titre</label>
+							<input class="js-title" type="text" name="titre" id="titre">
+						</div>
+					
+						<div class="form-group-id">
+							<label for="categorie">Catégorie</label>
+							<select name="categorie" id="categorie" class="js-categoryId">
+								<option value="1">Objets</option>
+								<option value="2">Appartements</option>
+								<option value="3">Hôtels & restaurants</option>
+							</select>
+						</div>
+						
+						<div class="line"></div>
+						<input type="submit" class="btn add-btn" value="Valider">
+					</form>
+
+					
+				</dialog>
+					
 			<!-- Fin mode administrateur -->
 			<div id="buttons">
 				<button id="0" class="btn-filter btn-filterActive">Tous</button>
