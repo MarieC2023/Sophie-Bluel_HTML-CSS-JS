@@ -57,50 +57,36 @@
 			<div id="portfolio-container">
 				<h2 id=portfolio-title>Mes Projets</h2>
 				<!-- Mode administrateur -->
-				
 				<button data-open-modal> <i class="fa-regular fa-pen-to-square"></i>Modifier</button>
-				<dialog data-modal>
+				<dialog data-modal1>
 					<button data-close-modal><i class="fa-solid fa-xmark"></i></button>
 					<h3 id="modalTitle" class="modal-title">
 						Galerie Photo
 					</h3>
-				
+
 					<div class="modal-gallery delete-btn">
 						<!-- Généré dynamiquement -->
 					</div>
 					<div class="line"></div>
-					<button class="btn">Ajouter une photo</button>
+					<button data-open-modal2 class="btn">Ajouter une photo</button>
 				</dialog>
-		
-				
-				
-			</div>
-			
 
-
-<!-- 2e partie de modale à poursuivre -->
-
-				<!-- <div id="modal2" style="display: none;">
-					<dialog data-modal2>
-						<button data-return-modal1><i class="fa-solid fa-arrow-left"></i></button>
-						<button data-close-modal><i class="fa-solid fa-xmark"></i></button>
-						<h3 id="modalTitle" class="modal-title">
+				<dialog data-modal2>
+					<button data-return-modal1><i class="fa-solid fa-arrow-left"></i></button>
+					<button data-close-modal2><i class="fa-solid fa-xmark"></i></button>
+					<h3 class="modal-title">
 						Ajout photo
-						</h3>
-				
-						<form class="modal-form" method="post"action="" enctype="multipart/form-data">
-					
+					</h3>
+					<form class="modal-form" method="post" action="" enctype="multipart/form-data">
 						<div class="add-picture">
 							<i class="fa-regular fa-image"></i>
 							<label for="picture">+ Ajouter photo</label>
 							<input type="file" name="picture" id="picture">
 						</div>
-					
 						<div class="add-title">
 							<label for="title">Titre</label>
 							<input type="text" name="title" id="title">
 						</div>
-					
 						<div class="select-category">
 							<label for="category">Catégorie</label>
 							<select name="category" id="category">
@@ -109,15 +95,14 @@
 								<option value="3">Hôtels & restaurants</option>
 							</select>
 						</div>
-						
 						<div class="line"></div>
 						<input type="submit" class="btn add-btn" value="Valider">
 					</form>
-
-					
 				</dialog>
-					
+
+			</div>
 			<!-- Fin mode administrateur -->
+
 			<div id="buttons">
 				<button id="0" class="btn-filter btn-filterActive">Tous</button>
 				<button id="1" class="btn-filter">Objets</button>
