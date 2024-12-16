@@ -32,9 +32,9 @@ async function fetchWorksForModal() {
 }
 
 
-    //////////////////////////////////////////////////////
-    ///// Gestion ouverture / fermeture de la modale /////
-    //////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////
+    ///// Gestion ouverture / fermeture de la modale 1 ////
+    ///////////////////////////////////////////////////////
 
 const openButton = document.querySelector("[data-open-modal]");
 const closeButton = document.querySelector("[data-close-modal]");
@@ -67,35 +67,104 @@ modal.addEventListener("click", (e) => {
   }
 });
 
+    ///////////////////////////////////////////////////////
+    ///// Gestion ouverture / fermeture de la modale 2 ////
+    ///////////////////////////////////////////////////////
+
+    // const openButton = document.querySelector("[data-open-modal]");
+    // const closeButton = document.querySelector("[data-close-modal]");
+    // const modal = document.querySelector("[data-modal]");
+        
+    // // Ouverture de la modale et chargement de la galerie
+    // openButton.addEventListener("click", () => {
+    //     modal.showModal();
+    //     fetchWorksForModal();
+    // })
+        
+    // // Fermeture de la modale
+    // closeButton.addEventListener("click", () => {
+    //     modal.close();
+    // })
+    
+        
+    // // Fermer la modale en cliquant sur l'overlay
+    //     // Utilisation de la méthode "getBoundingClientRect()" 
+    //     // qui retourne l'objet avec ses dimensions et les coordonnées de l'élément
+    // modal.addEventListener("click", (e) => {
+    //   const dialogDimensions = modal.getBoundingClientRect();
+    //   if (
+    //       e.clientX < dialogDimensions.left ||
+    //       e.clientX > dialogDimensions.right ||
+    //       e.clientY < dialogDimensions.top ||
+    //       e.clientY > dialogDimensions.bottom
+    //   ) {
+    //       modal.close();
+    //   }
+    // });
 
     /////////////////////////////////////////////
     ///// Gestion de la suppression d'image /////
     /////////////////////////////////////////////
 
+function deleteMode() {
+    // On récupère le token depuis le sessionStorage 
+    const userToken = sessionStorage.getItem("accessToken");
 
-    // const deleteBtns = document.querySelectorAll('.delete-btn');
-    // deleteBtns.forEach(btn => {
-    //     btn.addEventListener('click', function(e) {
-    //         const figureId = e.target.closest('figure').id.replace('modal-figure-', '');
-    //         // Appel à l'API pour supprimer l'image, puis mise à jour de la galerie
-    //         deleteImage(figureId);
-    //     });
-    // });
-    
-    // async function deleteImage(figureId) {
-    //     try {
-    //         const response = await fetch(`http://localhost:5678/api/works/${figureId}`, {
-    //             method: 'DELETE',
-    //         });
-    //         if (response.ok) {
-    //             document.querySelector(`#modal-figure-${figureId}`).remove();
-    //         } else {
-    //             console.error("Erreur lors de la suppression de l'image.");
-    //         }
-    //     } catch (err) {
-    //         console.error("Erreur API lors de la suppression : ", err);
-    //     }
-    // }
+    // Vérifie si le token est présent et valide
+    if (!userToken) {
+        console.log("Erreur : token non valide ou manquant.");
+        return; // Arrête l'exécution si le token est invalide
+    }
+
+    // Sélectionne les boutons qui permettent de supprimer les images
+    const deleteBtns = document.querySelectorAll(".delete-btn");
+
+    // Pour chaque bouton, on ajoute un écouteur d'événements
+    deleteBtns.forEach(btn => {
+        btn.addEventListener("click", async function (e) {
+            console.log("click ok");
+
+            // Trouve l'élément 'figure' le plus proche et récupère son ID
+            const figureElement = e.target.closest("figure");
+            if (!figureElement) {
+                console.error("Erreur : élément 'figure' introuvable.");
+                return;
+            }
+
+            // Récupère l'identifiant de la figure
+            const figureId = figureElement.id.replace("modal-figure-", "");
+            console.log(`ID de la figure à supprimer : ${figureId}`);
+
+            // Appelle l'API pour supprimer l'image
+            await deleteImage(figureId, userToken);
+        });
+    });
+
+    // Fonction pour supprimer une image via l'API
+    async function deleteImage(figureId, token) {
+        try {
+            const response = await fetch(`http://localhost:5678/api/works/${figureId}`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${token}`, // Transmet le token d'authentification
+                },
+            });
+
+            // Vérifie la réponse de l'API
+            if (response.ok) {
+                console.log(`Image ${figureId} supprimée avec succès.`);
+                document.querySelector(`#modal-figure-${figureId}`).remove(); 
+            } else {
+                console.error(`Erreur lors de la suppression : ${response.status} ${response.statusText}`);
+            }
+        } catch (err) {
+            console.error("Erreur API lors de la suppression :", err);
+        }
+    }
+}
+
+// Appelle la fonction principale
+deleteMode();  
     
 
     //////////////////////////////////////
