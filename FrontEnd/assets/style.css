@@ -142,7 +142,7 @@ dialog::backdrop{
 .add-picture::after {
 	content: "jpg, png : 4mo max";
 	position: absolute;
-	top: 340px;
+	top: 300px;
 	font-size: 10px;
 	color: #444444;
 }
@@ -174,7 +174,6 @@ dialog::backdrop{
 .add-picture input {
 	display: none;
 }
-
 
 .add-title {
 	display: flex;
@@ -215,6 +214,7 @@ dialog::backdrop{
 	background-color: #FFFFFF;
 	color: #444444;
 	font-weight: 400;
+	
 }
 
 [data-close-modal], [data-close-modal2]{
@@ -289,6 +289,10 @@ dialog::backdrop{
     cursor: pointer;
 }
 
+.modal-form{
+	margin: 60px;
+	margin-top: 20px;
+}
 
 .line{
 	border-top: 1px solid #B3B3B3;
@@ -305,7 +309,6 @@ dialog::backdrop{
 	color: white;
 	background-color: #1D6154;
 	margin : 2em auto ;
-	width: 180px;
 	text-align: center;
 	border-radius: 60px ;
 	height: 36px;
@@ -318,8 +321,11 @@ dialog::backdrop{
 	border: none;
 }
 
-.add-btn{
+
+input[type="submit"].add-btn{
 	background-color: #B3B3B3;
+	width: 237px;
+	
 }
 
 /* Fin de la modale */

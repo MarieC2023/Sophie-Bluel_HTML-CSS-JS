@@ -2,9 +2,9 @@
 ///// Gestion de la modale /////
 ////////////////////////////////
 
-    ////////////////////////////////////
-    ///// Récupération des oeuvres /////
-    ////////////////////////////////////
+////////////////////////////////////
+///// Récupération des oeuvres /////
+////////////////////////////////////
 
 // Fonction pour récupérer les oeuvres depuis l'API pour la mini Galerie
 async function fetchWorksForModal() {
@@ -19,7 +19,7 @@ async function fetchWorksForModal() {
             display += `
                 <figure id="modal-figure-${figure.id}">
                     <img src="${figure.imageUrl}" alt="${figure.title}">
-                    <i class="fa-solid fa-trash-can delete-btn"></i>
+                    <i class="fa-solid fa-trash-can delete-btn" data-id="${figure.id}"></i>
                 </figure>
             `;
         }
@@ -32,26 +32,26 @@ async function fetchWorksForModal() {
 }
 
 
-    ///////////////////////////////////////////////////////
-    ///// Gestion ouverture / fermeture de la modale 1 ////
-    ///////////////////////////////////////////////////////
+///////////////////////////////////////////////////////
+///// Gestion ouverture / fermeture de la modale 1 ////
+///////////////////////////////////////////////////////
 
 const modal = document.querySelector("[data-modal1]");
-    
+
 // Ouverture de la modale et chargement de la galerie
 const openButton = document.querySelector("[data-open-modal]");
 openButton.addEventListener("click", () => {
     modal.showModal();
     fetchWorksForModal();
 })
-    
+
 // Fermeture de la modale
 const closeButton = document.querySelector("[data-close-modal]");
 closeButton.addEventListener("click", () => {
     modal.close();
 })
 
-    
+
 // Fermer la modale en cliquant sur l'overlay
 // Utilisation de la méthode "getBoundingClientRect()" 
 // qui retourne l'objet avec ses dimensions et les coordonnées de l'élément
@@ -67,9 +67,9 @@ modal.addEventListener("click", (e) => {
     }
 });
 
-    ///////////////////////////////////////////////////////
-    ///// Gestion ouverture / fermeture de la modale 2 ////
-    ///////////////////////////////////////////////////////
+///////////////////////////////////////////////////////
+///// Gestion ouverture / fermeture de la modale 2 ////
+///////////////////////////////////////////////////////
 
 
 // Sélection du bouton de la modale 2
@@ -89,17 +89,9 @@ closeButton2.addEventListener("click", () => {
 })
 
 
-// Fermer la modale en cliquant sur l'overlay
-// Utilisation de la méthode "getBoundingClientRect()" 
-// qui retourne l'objet avec ses dimensions et les coordonnées de l'élément
+// Fermer la modale en cliquant sur l'overlay et uniquement lui
 modal2.addEventListener("click", (e) => {
-    const dialogDimensions = modal2.getBoundingClientRect();
-    if (
-        e.clientX < dialogDimensions.left ||
-        e.clientX > dialogDimensions.right ||
-        e.clientY < dialogDimensions.top ||
-        e.clientY > dialogDimensions.bottom
-    ) {
+    if (e.target === modal2) {
         modal2.close();
     }
 });
@@ -111,9 +103,9 @@ returnButton.addEventListener("click", () => {
     modal.showModal();
 })
 
-    /////////////////////////////////////////////
-    ///// Gestion de la suppression d'image /////
-    /////////////////////////////////////////////
+/////////////////////////////////////////////
+///// Gestion de la suppression d'image /////
+/////////////////////////////////////////////
 
 function deleteMode() {
     // On récupère le token depuis le sessionStorage 
@@ -127,27 +119,25 @@ function deleteMode() {
 
     // Sélectionne les boutons qui permettent de supprimer les images
     const deleteBtns = document.querySelectorAll(".delete-btn");
-
-    // Pour chaque bouton, on ajoute un écouteur d'événements
+    console.log(deleteBtns)
+    // Pour chaque bouton delete, on ajoute un écouteur d'événements
     deleteBtns.forEach(btn => {
         btn.addEventListener("click", async function (e) {
             console.log("click ok");
 
-            // Trouve l'élément 'figure' le plus proche et récupère son ID
-            const figureElement = e.target.closest("figure");
-            if (!figureElement) {
-                console.error("Erreur : élément 'figure' introuvable.");
+            // Récupère directement l'ID depuis le bouton
+            const figureId = e.target.getAttribute("data-id");
+            if (!figureId) {
+                console.error("Erreur : ID introuvable sur le bouton.");
                 return;
             }
-
-            // Récupère l'identifiant de la figure
-            const figureId = figureElement.id.replace("modal-figure-", "");
             console.log(`ID de la figure à supprimer : ${figureId}`);
 
             // Appelle l'API pour supprimer l'image
             await deleteImage(figureId, userToken);
         });
     });
+
 
     // Fonction pour supprimer une image via l'API
     async function deleteImage(figureId, token) {
@@ -162,7 +152,7 @@ function deleteMode() {
             // Vérifie la réponse de l'API
             if (response.ok) {
                 console.log(`Image ${figureId} supprimée avec succès.`);
-                document.querySelector(`#modal-figure-${figureId}`).remove(); 
+                document.querySelector(`#modal-figure-${figureId}`).remove();
             } else {
                 console.error(`Erreur lors de la suppression : ${response.status} ${response.statusText}`);
             }
@@ -173,11 +163,11 @@ function deleteMode() {
 }
 
 // Appelle la fonction principale
-deleteMode();  
-    
+deleteMode();
 
-    //////////////////////////////////////
-    ///// Gestion de l'ajout d'image /////
-    //////////////////////////////////////
+
+//////////////////////////////////////
+///// Gestion de l'ajout d'image /////
+//////////////////////////////////////
 
 // const addModal = document.getElementById("modal2").addEventListener("click", );
