@@ -103,6 +103,38 @@ returnButton.addEventListener("click", () => {
     modal.showModal();
 })
 
+/////////////////////////////////////////////////
+///// Gestion de l'affichage des catégories /////
+/////////////////////////////////////////////////
+
+document.addEventListener('DOMContentLoaded', async () => {
+    const categorySelect = document.getElementById("category");
+    try {
+        // Effectuer une requête pour récupérer les catégories
+        const response = await fetch("http://localhost:5678/api/categories");
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        // Convertir la réponse en JSON
+        const categories = await response.json();
+
+        // Ajouter les options dans le <select>
+        categories.forEach(category => {
+            const option = document.createElement("option");
+            option.value = category.id; 
+            option.textContent = category.name; 
+            categorySelect.appendChild(option);
+        });
+    } catch (error) {
+        console.error("Erreur lors de la récupération des catégories:", error);
+        const errorOption = document.createElement("option");
+        errorOption.textContent = "Erreur de chargement";
+        categorySelect.appendChild(errorOption);
+    }
+});
+
+
 /////////////////////////////////////////////
 ///// Gestion de la suppression d'image /////
 /////////////////////////////////////////////
