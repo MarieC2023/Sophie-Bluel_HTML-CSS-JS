@@ -129,56 +129,69 @@ dialog::backdrop{
 }
 
 .add-picture {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	background-color: #E8F1F6;
-	width: 500px;
-	height: 200px;
-	border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #E8F1F6;
+    width: 500px;
+    height: 200px;
+    border-radius: 3px;
+    position: relative; 
+    overflow: hidden; 
 }
 
 .add-picture::after {
-	content: "jpg, png : 4mo max";
-	position: absolute;
-	top: 300px;
-	font-size: 10px;
-	color: #444444;
+    content: "jpg, png : 4mo max";
+    position: absolute;
+    bottom: 20px; 
+    font-size: 10px;
+    color: #444444;
+   
+}
+
+.add-picture.image-loaded::after {
+    content: ""; 
 }
 
 .add-picture i {
-	color: #B9C5CC;
-	font-size: 90px;
-	font-weight: 100;
-	margin: 20px;
-	margin-top: 20px;
-	margin-top: -25px;
+    color: #B9C5CC;
+    font-size: 90px;
+    font-weight: 100;
+    margin: 20px;
+    margin-top: -25px;
 }
 
 .add-picture label {
-	font-family: "work sans";
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 200px;
-	height: 40px;
-	background-color: #B9C5CC;
-	color: #306685;
-	font-weight: 500;
-	border-radius: 50px;
-	cursor: pointer;
-	margin-top: -10px;
+    font-family: "Work Sans", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 40px;
+    background-color: #B9C5CC;
+    color: #306685;
+    font-weight: 500;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: -10px;
 }
 
 .add-picture input {
-	display: none;
+    display: none; /* Cache le champ input */
 }
+
+/* Cacher label et icône uniquement lorsque l'image est chargée */
+.add-picture.image-loaded label, .add-picture.image-loaded i {
+    opacity: 0; /* Rend les éléments invisibles */
+    pointer-events: none; /* Désactive les interactions */
+}
+
 
 .add-title {
 	display: flex;
 	flex-direction: column;
-	width: 500;
+	width: 500px;
 }
 
 .add-title label {
