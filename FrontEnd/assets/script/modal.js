@@ -101,12 +101,12 @@ const returnButton = document.querySelector("[data-return-modal1]");
 returnButton.addEventListener("click", () => {
     modal2.close();
     modal.showModal();
-    fetchWorksForModal(); // Recharge la galerie pour refléter les modifications
+    fetchWorksForModal(); 
 });
 
-    /////////////////////////////////////////////
-    ///// Gestion de la suppression d'image /////
-    /////////////////////////////////////////////
+    //////////////////////////////////////////////
+    ///// Gestion de la suppression d'images /////
+    //////////////////////////////////////////////
 
 function deleteMode() {
     // Récupération du token
@@ -142,7 +142,8 @@ function deleteMode() {
 
                 if (response.ok) {
                     console.log(`Image ${figureId} supprimée avec succès.`);
-                    document.querySelector(`#modal-figure-${figureId}`).remove();
+                    const modalFigure = document.querySelector(`#modal-figure-${figureId}`).remove();
+                    console.log(modalFigure)
                 } else {
                     console.error(`Erreur lors de la suppression : ${response.status} ${response.statusText}`);
                 }
@@ -170,10 +171,10 @@ async function setupCategoryDropdown() {
 
     // Ajout d'une première option vide
     const emptyOption = document.createElement("option");
-    emptyOption.value = ""; // Valeur vide pour cette option
-    emptyOption.textContent = "Veuillez choisir une catégorie"; // Texte visible
-    emptyOption.disabled = true; // Empêche la sélection de cette option après soumission
-    emptyOption.selected = true; // Rend cette option sélectionnée par défaut
+    emptyOption.value = ""; 
+    emptyOption.textContent = "Veuillez choisir une catégorie"; 
+    emptyOption.disabled = true; 
+    emptyOption.selected = true; 
     categorySelect.appendChild(emptyOption);
 
     try {
@@ -193,11 +194,11 @@ async function setupCategoryDropdown() {
 
 // Fonction pour configurer le formulaire permettant l'ajout de photo
 function setupAddPhotoForm() {
-    const form = document.querySelector(".modal-form"); // Formulaire d'ajout d'image
-    const pictureInput = document.getElementById("picture"); // Input pour l'image
-    const titleInput = document.getElementById("title"); // Input pour le titre
-    const categorySelect = document.getElementById("category"); // Input pour les catégories
-    const addPictureDiv = document.querySelector(".add-picture"); // Zone d'aperçu de l'image
+    const form = document.querySelector(".modal-form"); 
+    const pictureInput = document.getElementById("picture"); 
+    const titleInput = document.getElementById("title"); 
+    const categorySelect = document.getElementById("category"); 
+    const addPictureDiv = document.querySelector(".add-picture"); 
 
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -243,7 +244,7 @@ function setupAddPhotoForm() {
         if (file) {
             const reader = new FileReader();
             reader.onload = (e) => {
-                addPictureDiv.style.backgroundImage = `url(${e.target.result})`; // Permet l'affichage d'un aperçu de l'image
+                addPictureDiv.style.backgroundImage = `url(${e.target.result})`; 
                 addPictureDiv.style.backgroundSize = "cover";
                 addPictureDiv.style.backgroundPosition = "center";
 
@@ -259,9 +260,9 @@ function setupAddPhotoForm() {
 
 // Réinitialise le formulaire après l'ajout d'une photo
 function resetForm(form, addPictureDiv) {
-    form.reset(); // Réinitialise les champs du formulaire
-    addPictureDiv.style.backgroundImage = ""; // Supprime l'aperçu de l'image
-    addPictureDiv.querySelector("label").style.opacity = "1"; // Rétablit le texte
-    addPictureDiv.querySelector("i").style.opacity = "1"; // Rétablit l'icône
-    addPictureDiv.classList.remove("image-loaded"); // Supprime la classe indiquant qu'une image est chargée
+    form.reset(); 
+    addPictureDiv.style.backgroundImage = ""; 
+    addPictureDiv.querySelector("label").style.opacity = "1"; 
+    addPictureDiv.querySelector("i").style.opacity = "1"; 
+    addPictureDiv.classList.remove("image-loaded");
 }
