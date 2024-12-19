@@ -47,12 +47,12 @@ async function fetchWorks() {
     }
 }
 
+// Appel de la fonction pour récupérer et afficher les œuvres
+fetchWorks();
+
     ////////////////////////////////////////////////////////
     ///// Gestion de l'affichage des oeuvres - Filtres /////
     ////////////////////////////////////////////////////////
-
-// Appel de la fonction pour récupérer et afficher les œuvres
-fetchWorks();
 
 // Fonction qui gère le filtrage des œuvres en fonction de la catégorie
 function btnFilter(event, data, buttons) {
@@ -63,12 +63,12 @@ function btnFilter(event, data, buttons) {
     const categoryId = parseInt(button.id);
 
     // Gestion de la classe active pour le bouton filtré
-    buttons.forEach(btn => btn.classList.remove("btn-filterActive")); // Retirer la classe "active" des autres boutons
-    button.classList.add("btn-filterActive"); // Ajouter la classe "active" au bouton cliqué
+    buttons.forEach(btn => btn.classList.remove("btn-filterActive")); 
+    button.classList.add("btn-filterActive"); 
 
     // Si l'ID de catégorie est 0 --> on afficher toutes les images
     if (categoryId === 0) {
-        displayAllImages(data); // Affiche toutes les images
+        displayAllImages(data); 
     } else {
         // Sinon, on affiche les images correspondant à la catégorie sélectionnée
         displayImagesByCategory(categoryId, data);
