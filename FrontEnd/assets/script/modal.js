@@ -28,7 +28,7 @@ async function fetchWorksForModal() {
         document.querySelector(".modal-gallery").innerHTML = display;
 
         // Rattacher les événements de suppression (lors de la suppression d'image)
-        deleteMode();
+        // deleteMode();
     } catch (err) {
         console.error("Une erreur est survenue lors du chargement des images : ", err);
     }
@@ -153,6 +153,8 @@ function deleteMode() {
         });
     });
 }
+
+deleteMode()
 
     //////////////////////////////////////
     ///// Gestion de l'ajout d'image /////
