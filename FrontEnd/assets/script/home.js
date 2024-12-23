@@ -12,10 +12,8 @@ import { APIWorks } from "./API.js";
     ///// Récupération des oeuvres /////
     ////////////////////////////////////
 
-
-
 // Fonction principale qui récupère les œuvres depuis l'API et les injectent dans la galerie
-async function fetchWorks() {
+const fetchWorks = async () => {
     try {
         let data = await APIWorks();
         let display = "";
@@ -33,13 +31,24 @@ async function fetchWorks() {
         // Sélectionne l'élément de la galerie
         const gallery = document.querySelector(".gallery");
 
-        // Réinitialise le contenu de la galerie en supprimant tous les enfants existants
-        while (gallery.firstChild) {
-            gallery.removeChild(gallery.firstChild);
-        }
+        // Réinitialise le contenu de la galerie
+        for (let i = gallery.children.length - 1; i >= 0; i--) {
+            gallery.removeChild(gallery.children[i]);
+        };
 
         // Insère toutes les œuvres dans l'élément de la galerie
         gallery.insertAdjacentHTML("beforeend", display);
+
+        // Sélectionne tous les boutons de filtrage
+        const buttons = document.querySelectorAll(".btn-filter");
+
+        // Ajoute un événement "click" à chaque bouton de filtrage
+        buttons.forEach(button => {
+            button.addEventListener("click", (event) => {
+                // Lorsqu'un bouton est cliqué, on appelle la fonction de filtrage
+                btnFilter(event, data, buttons);
+            });
+        });
 
     } catch (err) {
         // Si une erreur survient, elle est capturée ici
@@ -51,14 +60,13 @@ async function fetchWorks() {
 fetchWorks();
 
 
-
     ////////////////////////////////////////////////////////
     ///// Gestion de l'affichage des oeuvres - Filtres /////
     ////////////////////////////////////////////////////////
 
 
 // Fonction qui gère le filtrage des œuvres en fonction de la catégorie
-function btnFilter(event, data, buttons) {
+const btnFilter = (event, data, buttons) => {
     // On récupère le bouton qui a été cliqué
     const button = event.target;
 
@@ -79,7 +87,7 @@ function btnFilter(event, data, buttons) {
 }
 
 // Fonction pour afficher toutes les images
-function displayAllImages(data) {
+const displayAllImages = (data) => {
     let display = "";
     // On parcourt toutes les œuvres et on crée le code HTML
     for (let figure of data) {
@@ -95,7 +103,7 @@ function displayAllImages(data) {
 }
 
 // Fonction pour afficher les images d'une catégorie spécifique
-function displayImagesByCategory(categoryId, data) {
+const displayImagesByCategory = (categoryId, data) => {
     // On filtre les œuvres qui correspondent à la catégorie sélectionnée
     const filteredData = data.filter(item => item.categoryId === categoryId);
 
@@ -119,7 +127,7 @@ function displayImagesByCategory(categoryId, data) {
     //////////////////////////////////////////////
 
 // Fonction pour afficher la bannière si le token est validé
-function editMode() {
+const editMode = () => {
     // On va chercher les éléments qu'on souhaite modifier
     const editBanner = document.getElementById("edit-banner");
     const logintLink = document.getElementById("login-link");
@@ -147,7 +155,7 @@ function editMode() {
 editMode();
 
 // Fonction de déconnexion
-function logoutUser() {
+const logoutUser = () => {
     sessionStorage.removeItem("accessToken");
     window.location.href = "index.html";
 }
