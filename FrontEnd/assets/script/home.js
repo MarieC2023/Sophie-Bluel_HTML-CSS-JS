@@ -18,7 +18,7 @@ const fetchWorks = async () => {
         let data = await APIWorks();
         let display = "";
 
-        // Parcours chaque projet (figure) et crée les balises HTML pour chaque œuvre
+        // Parcours chaque projet (figure) et création du contenu pour chaque œuvre
         for (let figure of data) {
             display += `
                 <figure id="${figure.id}">
@@ -28,35 +28,29 @@ const fetchWorks = async () => {
             `;
         }
 
-        // Sélectionne l'élément de la galerie
+        // Gestion de la galerie (initialisation du contenue + insertion des éléments)
         const gallery = document.querySelector(".gallery");
 
-        // Réinitialise le contenu de la galerie
         for (let i = gallery.children.length - 1; i >= 0; i--) {
             gallery.removeChild(gallery.children[i]);
         };
 
-        // Insère toutes les œuvres dans l'élément de la galerie
         gallery.insertAdjacentHTML("beforeend", display);
 
-        // Sélectionne tous les boutons de filtrage
+        // Gestion des boutons de filtre (sélection, événement au clique et appel de la fonction)
         const buttons = document.querySelectorAll(".btn-filter");
 
-        // Ajoute un événement "click" à chaque bouton de filtrage
         buttons.forEach(button => {
             button.addEventListener("click", (event) => {
-                // Lorsqu'un bouton est cliqué, on appelle la fonction de filtrage
                 btnFilter(event, data, buttons);
             });
         });
 
     } catch (err) {
-        // Si une erreur survient, elle est capturée ici
         console.error("Une erreur est survenue :", err);
     }
 }
 
-// Appel de la fonction pour récupérer et afficher les œuvres
 fetchWorks();
 
 
@@ -64,24 +58,18 @@ fetchWorks();
     ///// Gestion de l'affichage des oeuvres - Filtres /////
     ////////////////////////////////////////////////////////
 
-
 // Fonction qui gère le filtrage des œuvres en fonction de la catégorie
 const btnFilter = (event, data, buttons) => {
-    // On récupère le bouton qui a été cliqué
     const button = event.target;
-
-    // On récupère l'ID de la catégorie depuis l'attribut "id" du bouton
     const categoryId = parseInt(button.id);
 
-    // Gestion de la classe active pour le bouton filtré
-    buttons.forEach(btn => btn.classList.remove("btn-filterActive")); 
-    button.classList.add("btn-filterActive"); 
+    buttons.forEach(btn => btn.classList.remove("btn-filterActive"));
+    button.classList.add("btn-filterActive");
 
-    // Si l'ID de catégorie est 0 --> on afficher toutes les images
+
     if (categoryId === 0) {
-        displayAllImages(data); 
+        displayAllImages(data);
     } else {
-        // Sinon, on affiche les images correspondant à la catégorie sélectionnée
         displayImagesByCategory(categoryId, data);
     }
 }
@@ -89,7 +77,6 @@ const btnFilter = (event, data, buttons) => {
 // Fonction pour afficher toutes les images
 const displayAllImages = (data) => {
     let display = "";
-    // On parcourt toutes les œuvres et on crée le code HTML
     for (let figure of data) {
         display += `
             <figure id="${figure.id}">
@@ -98,17 +85,13 @@ const displayAllImages = (data) => {
             </figure>
         `;
     }
-    // On insère le code HTML dans la galerie
     document.querySelector(".gallery").innerHTML = display;
 }
 
 // Fonction pour afficher les images d'une catégorie spécifique
 const displayImagesByCategory = (categoryId, data) => {
-    // On filtre les œuvres qui correspondent à la catégorie sélectionnée
     const filteredData = data.filter(item => item.categoryId === categoryId);
-
     let display = "";
-    // On crée le code HTML pour chaque œuvre filtrée
     for (let figure of filteredData) {
         display += `
             <figure id="${figure.id}">
@@ -117,7 +100,6 @@ const displayImagesByCategory = (categoryId, data) => {
             </figure>
         `;
     }
-    // On insère le code HTML filtré dans la galerie
     document.querySelector(".gallery").innerHTML = display;
 }
 
