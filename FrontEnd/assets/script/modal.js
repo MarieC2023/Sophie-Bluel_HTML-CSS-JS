@@ -197,7 +197,7 @@ const setupCategoryDropdown = async () => {
 }
 
 // Fonction pour configurer le formulaire permettant l'ajout de photo
-function setupAddPhotoForm() {
+const setupAddPhotoForm = () => {
     const form = document.querySelector(".modal-form"); 
     const pictureInput = document.getElementById("picture"); 
     const titleInput = document.getElementById("title"); 
@@ -263,7 +263,7 @@ function setupAddPhotoForm() {
 }
 
 // Réinitialise le formulaire après l'ajout d'une photo
-function resetForm(form, addPictureDiv) {
+const resetForm = (form, addPictureDiv) => {
     form.reset(); 
     addPictureDiv.style.backgroundImage = ""; 
     addPictureDiv.querySelector("label").style.opacity = "1"; 
