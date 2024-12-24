@@ -13,7 +13,7 @@ import { APIWorks } from "./API.js";
     ////////////////////////////////////
 
 // Fonction principale qui récupère les œuvres depuis l'API et les injectent dans la galerie
-const fetchWorks = async () => {
+export const fetchWorks = async () => {
     try {
         let data = await APIWorks();
         let display = "";
