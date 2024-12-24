@@ -178,13 +178,13 @@ dialog::backdrop{
 }
 
 .add-picture input {
-    display: none; /* Cache le champ input */
+    display: none; 
 }
 
-/* Cacher label et icône uniquement lorsque l'image est chargée */
+
 .add-picture.image-loaded label, .add-picture.image-loaded i {
-    opacity: 0; /* Rend les éléments invisibles */
-    pointer-events: none; /* Désactive les interactions */
+    opacity: 0; 
+    pointer-events: none; 
 }
 
 
@@ -339,6 +339,10 @@ input[type="submit"].add-btn{
 	background-color: #B3B3B3;
 	width: 237px;
 	
+}
+
+input[type="submit"].add-btnActive{
+	background-color: #1D6154;
 }
 
 /* Fin de la modale */

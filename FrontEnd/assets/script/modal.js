@@ -6,7 +6,7 @@
     ///// Récupération de l'API /////
     /////////////////////////////////
 
-import { APIWorks } from "./API.js";
+import { APIWorks, APICategories, APIAddPicture } from "./API.js";
 import { fetchWorks } from "./home.js";
 
     ////////////////////////////////////
@@ -145,7 +145,6 @@ const deleteMode = () => {
                 if (response.ok) {
                     console.log(`Image ${figureId} supprimée avec succès.`);
                     const modalFigure = document.querySelector(`#modal-figure-${figureId}`).remove();
-                    console.log(modalFigure)
                 } else {
                     console.error(`Erreur lors de la suppression : ${response.status} ${response.statusText}`);
                 }
@@ -161,8 +160,6 @@ deleteMode()
     //////////////////////////////////////
     ///// Gestion de l'ajout d'image /////
     //////////////////////////////////////
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
     setupCategoryDropdown();
@@ -182,8 +179,7 @@ const setupCategoryDropdown = async () => {
     categorySelect.appendChild(emptyOption);
 
     try {
-        const response = await fetch("http://localhost:5678/api/categories");
-        const categories = await response.json();
+        const categories = await APICategories();
         categories.forEach((category) => {
             // Création d'une option pour chaque catégorie
             const option = document.createElement("option");
@@ -203,13 +199,34 @@ const setupAddPhotoForm = () => {
     const titleInput = document.getElementById("title"); 
     const categorySelect = document.getElementById("category"); 
     const addPictureDiv = document.querySelector(".add-picture"); 
+    const submitButton = form.querySelector("input[type='submit']"); 
+
+    // Fonction pour mettre à jour le bouton "Valider" si tous les champs sont rempli
+    const updateSubmitButtonState = () => {
+        if (pictureInput.files[0] && titleInput.value.trim() && categorySelect.value) {
+            submitButton.classList.add("add-btnActive"); 
+            submitButton.disabled = false; 
+        } else {
+            submitButton.classList.remove("add-btnActive");
+            submitButton.disabled = true; 
+        }
+    };
+
+    // Vérification des champs à chaque changement
+    pictureInput.addEventListener("change", updateSubmitButtonState);
+    titleInput.addEventListener("input", updateSubmitButtonState);
+    categorySelect.addEventListener("change", updateSubmitButtonState);
 
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
+        // Alerte donnée si les champs ne sont pas remplis
         if (!pictureInput.files[0] || !titleInput.value.trim() || !categorySelect.value) {
             alert("Veuillez remplir tous les champs du formulaire.");
             return;
+        } else {
+            submitButton.classList.add("add-btnActive");
+            submitButton.disabled = false;
         }
 
         // Crée un objet FormData avec les données du formulaire
@@ -219,23 +236,11 @@ const setupAddPhotoForm = () => {
         formData.append("category", categorySelect.value);
 
         try {
-            const response = await fetch("http://localhost:5678/api/works", {
-                method: "POST",
-                headers: {
-                    Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
-                },
-                body: formData,
-            });
-
-            if (!response.ok) {
-                throw new Error(`Erreur API : ${response.status} ${response.statusText}`);
-            }
-
-            const newWork = await response.json();
-            alert("Nouvelle photo ajoutée avec succès !");
-            fetchWorksForModal(); // Recharge la galerie après ajout
+            await APIAddPicture(formData);
+            fetchWorksForModal(); 
             fetchWorks();
             resetForm(form, addPictureDiv);
+            updateSubmitButtonState(); 
         } catch (error) {
             console.error("Erreur lors de l'ajout de la photo :", error);
             alert("Une erreur s'est produite lors de l'ajout de la photo.");
@@ -252,7 +257,7 @@ const setupAddPhotoForm = () => {
                 addPictureDiv.style.backgroundSize = "cover";
                 addPictureDiv.style.backgroundPosition = "center";
 
-                // Masque les éléments de texte pour un effet propre
+                // Masque les éléments de texte pour un meilleur effet
                 addPictureDiv.querySelector("label").style.opacity = "0";
                 addPictureDiv.querySelector("i").style.opacity = "0";
                 addPictureDiv.classList.add("image-loaded");
@@ -260,7 +265,8 @@ const setupAddPhotoForm = () => {
             reader.readAsDataURL(file);
         }
     });
-}
+};
+
 
 // Réinitialise le formulaire après l'ajout d'une photo
 const resetForm = (form, addPictureDiv) => {
@@ -269,4 +275,7 @@ const resetForm = (form, addPictureDiv) => {
     addPictureDiv.querySelector("label").style.opacity = "1"; 
     addPictureDiv.querySelector("i").style.opacity = "1"; 
     addPictureDiv.classList.remove("image-loaded");
+    
+    const categorySelect = form.querySelector("#category");
+    categorySelect.value = "";
 }
