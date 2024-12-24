@@ -2,19 +2,23 @@
 ///// Gestion de la modale /////
 ////////////////////////////////
 
+    /////////////////////////////////
+    ///// Récupération de l'API /////
+    /////////////////////////////////
+
+import { APIWorks } from "./API.js";
+import { fetchWorks } from "./home.js";
+
     ////////////////////////////////////
     ///// Récupération des oeuvres /////
     ////////////////////////////////////
 
 // Fonction pour récupérer les oeuvres depuis l'API pour la mini Galerie
-async function fetchWorksForModal() {
+const fetchWorksForModal = async () => {
     try {
-        // Requête pour récupérer les données depuis l'API
-        const response = await fetch("http://localhost:5678/api/works");
-        const data = await response.json();
-
-        // Générer les éléments HTML pour la galerie
+        let data = await APIWorks();
         let display = "";
+
         for (let figure of data) {
             display += `
                 <figure id="modal-figure-${figure.id}">
@@ -27,8 +31,6 @@ async function fetchWorksForModal() {
         // Injecter le contenu dans la galerie modale
         document.querySelector(".modal-gallery").innerHTML = display;
 
-        // Rattacher les événements de suppression (lors de la suppression d'image)
-        // deleteMode();
     } catch (err) {
         console.error("Une erreur est survenue lors du chargement des images : ", err);
     }
@@ -108,7 +110,7 @@ returnButton.addEventListener("click", () => {
     ///// Gestion de la suppression d'images /////
     //////////////////////////////////////////////
 
-function deleteMode() {
+const deleteMode = () => {
     // Récupération du token
     const userToken = sessionStorage.getItem("accessToken");
 
@@ -168,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Ajout des catégories dans le formulaire
-async function setupCategoryDropdown() {
+const setupCategoryDropdown = async () => {
     const categorySelect = document.getElementById("category");
 
     // Ajout d'une première option vide
