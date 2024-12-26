@@ -46,27 +46,27 @@ export const APIConnection = async ({ email, password }) => {
     ///// Supression des oeuvres /////
     //////////////////////////////////
 
-export const APIDelete = async (figureId, userToken) => {
+export const APIDeletePicture = async (figureId, userToken) => {
     try {
-        const response = await fetch(`${URL}/${figureId}`, {
+        const response = await fetch(`http://localhost:5678/api/works/${figureId}`, {
             method: "DELETE",
             headers: {
                 Authorization: `Bearer ${userToken}`,
             },
-
         });
-        if (response.ok) {
-            console.log(`Image ${figureId} supprimée avec succès.`);
-            const modalFigure = document.querySelector(`#modal-figure-${figureId}`).remove();
-            console.log(modalFigure)
-        } else {
-            console.error(`Erreur lors de la suppression : ${response.status} ${response.statusText}`);
-        }
-    } catch (err) {
-        console.error("Erreur API lors de la suppression :", err);
-    }
 
+        if (!response.ok) {
+            throw new Error(`Erreur HTTP : ${response.status} ${response.statusText}`);
+        }
+
+        console.log(`Image ${figureId} supprimée avec succès.`);
+        return true; // Indique que la suppression a été un succès
+    } catch (err) {
+        console.error("Erreur API lors de la suppression :", err.message);
+        throw err;
+    }
 };
+
 
     ///////////////////////////////////////
     ///// Récupération des catégories /////

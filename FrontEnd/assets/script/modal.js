@@ -6,7 +6,7 @@
     ///// Récupération de l'API /////
     /////////////////////////////////
 
-import { APIWorks, APICategories, APIAddPicture } from "./API.js";
+import { APIWorks, APIDeletePicture, APICategories, APIAddPicture } from "./API.js";
 import { fetchWorks } from "./home.js";
 
     ////////////////////////////////////
@@ -111,51 +111,39 @@ returnButton.addEventListener("click", () => {
     //////////////////////////////////////////////
 
 const deleteMode = () => {
-    // Récupération du token
+    // Récupération du token et vérification de sa validité
     const userToken = sessionStorage.getItem("accessToken");
-
-    // Vérification de la validité du token
     if (!userToken) {
         console.error("Erreur : token non valide ou manquant.");
         return;
     }
 
-    // Sélection des boutons pour la suppression d'image
+    // Récupération des boutons pour la suppression d'image et ajout d'un écouteur d'événement
     const deleteBtns = document.querySelectorAll(".delete-btn");
-
-    // Pour chaque bouton delete, on ajoute un écouteur d'événements
     deleteBtns.forEach((btn) => {
         btn.addEventListener("click", async (e) => {
-            // Récupère directement l'ID de l'image depuis le bouton
             const figureId = e.target.getAttribute("data-id");
             if (!figureId) {
                 console.error("Erreur : ID introuvable sur le bouton.");
                 return;
             }
 
-            // Fonction pour supprimer une image via l'API
             try {
-                const response = await fetch(`http://localhost:5678/api/works/${figureId}`, {
-                    method: "DELETE",
-                    headers: {
-                        Authorization: `Bearer ${userToken}`,
-                    },
-                });
-
-                if (response.ok) {
-                    console.log(`Image ${figureId} supprimée avec succès.`);
-                    const modalFigure = document.querySelector(`#modal-figure-${figureId}`).remove();
-                } else {
-                    console.error(`Erreur lors de la suppression : ${response.status} ${response.statusText}`);
+                const isDeleted = await APIDeletePicture(figureId, userToken);
+                if (isDeleted) {
+                    const modalFigure = document.querySelector(`#modal-figure-${figureId}`);
+                    if (modalFigure) {
+                        modalFigure.remove();
+                        console.log(`Élément DOM pour l'image ${figureId} supprimé avec succès.`);
+                    }
                 }
-            } catch (err) {
-                console.error("Erreur API lors de la suppression :", err);
+            } catch (error) {
+                alert("Une erreur s'est produite lors de la suppression de l'image.");
             }
         });
     });
-}
-
-deleteMode()
+};
+deleteMode();
 
     //////////////////////////////////////
     ///// Gestion de l'ajout d'image /////
@@ -279,3 +267,4 @@ const resetForm = (form, addPictureDiv) => {
     const categorySelect = form.querySelector("#category");
     categorySelect.value = "";
 }
+
