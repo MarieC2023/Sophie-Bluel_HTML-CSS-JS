@@ -86,7 +86,7 @@ export const APICategories = async () => {
 
 
     ///////////////////////////////////////
-    ///// Récupération des catégories /////
+    ///// Ajout des photos dans l'API /////
     ///////////////////////////////////////  
 
 export const APIAddPicture = async (formData) => {
