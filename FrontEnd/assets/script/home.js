@@ -12,13 +12,11 @@ import { APIWorks } from "./API.js";
     ///// Récupération des oeuvres /////
     ////////////////////////////////////
 
-// Fonction principale qui récupère les œuvres depuis l'API et les injectent dans la galerie
 export const fetchWorks = async () => {
     try {
         let data = await APIWorks();
         let display = "";
 
-        // Parcours chaque projet (figure) et création du contenu pour chaque œuvre
         for (let figure of data) {
             display += `
                 <figure id="${figure.id}">
@@ -28,7 +26,6 @@ export const fetchWorks = async () => {
             `;
         }
 
-        // Gestion de la galerie (initialisation du contenue + insertion des éléments)
         const gallery = document.querySelector(".gallery");
 
         for (let i = gallery.children.length - 1; i >= 0; i--) {
@@ -37,7 +34,6 @@ export const fetchWorks = async () => {
 
         gallery.insertAdjacentHTML("beforeend", display);
 
-        // Gestion des boutons de filtre (sélection, événement au clique et appel de la fonction)
         const buttons = document.querySelectorAll(".btn-filter");
 
         buttons.forEach(button => {
@@ -47,7 +43,6 @@ export const fetchWorks = async () => {
         });
 
     } catch (err) {
-        console.error("Une erreur est survenue :", err);
     }
 }
 
@@ -58,7 +53,6 @@ fetchWorks();
     ///// Gestion de l'affichage des oeuvres - Filtres /////
     ////////////////////////////////////////////////////////
 
-// Fonction qui gère le filtrage des œuvres en fonction de la catégorie
 const btnFilter = (event, data, buttons) => {
     const button = event.target;
     const categoryId = parseInt(button.id);
@@ -74,7 +68,6 @@ const btnFilter = (event, data, buttons) => {
     }
 }
 
-// Fonction pour afficher toutes les images
 const displayAllImages = (data) => {
     let display = "";
     for (let figure of data) {
@@ -88,7 +81,6 @@ const displayAllImages = (data) => {
     document.querySelector(".gallery").innerHTML = display;
 }
 
-// Fonction pour afficher les images d'une catégorie spécifique
 const displayImagesByCategory = (categoryId, data) => {
     const filteredData = data.filter(item => item.categoryId === categoryId);
     let display = "";
@@ -108,23 +100,18 @@ const displayImagesByCategory = (categoryId, data) => {
     ///// Gestion de la page en mode édition /////
     //////////////////////////////////////////////
 
-// Fonction pour afficher la bannière si le token est validé
 const editMode = () => {
-    // On va chercher les éléments qu'on souhaite modifier
     const editBanner = document.getElementById("edit-banner");
     const logintLink = document.getElementById("login-link");
     const logoutLink = document.getElementById("logout-link");
     const filter = document.getElementById("buttons");
     const changeButton = document.querySelector("[data-open-modal");
 
-    // On récupère le token depuis le localStorage
     const userToken = sessionStorage.getItem("accessToken");
 
-    // On vérifie si le token est présent et valide
     const isTokenValide = !!userToken;
 
     if (isTokenValide) {
-        // On applique les modification lié à la connexion admin
         editBanner.style.display = "flex";
         logintLink.style.display = "none";
         logoutLink.style.display = "flex";
@@ -136,13 +123,11 @@ const editMode = () => {
 }
 editMode();
 
-// Fonction de déconnexion
 const logoutUser = () => {
     sessionStorage.removeItem("accessToken");
     window.location.href = "index.html";
 }
 
-// Ajoute un événement "click" au bouton logout
 document.addEventListener("DOMContentLoaded", () => {
     const logoutLink = document.getElementById("logout-link");
     if (logoutLink) {

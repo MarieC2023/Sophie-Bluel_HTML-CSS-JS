@@ -15,7 +15,6 @@ export const APIWorks = async () => {
         const data = await response.json();
         return data;
     } catch (err) {
-        console.log("Erreur lors de la récupération des projets : ", err.message);
         throw err;
     }
 };
@@ -37,7 +36,6 @@ export const APIConnection = async ({ email, password }) => {
         const data = await response.json();
         return data;
     } catch (err) {
-        console.log("Erreur lors de la connection : ", err.message);
         throw err;
     }
 };
@@ -59,10 +57,8 @@ export const APIDeletePicture = async (figureId, userToken) => {
             throw new Error(`Erreur HTTP : ${response.status} ${response.statusText}`);
         }
 
-        console.log(`Image ${figureId} supprimée avec succès.`);
-        return true; // Indique que la suppression a été un succès
+        return true; 
     } catch (err) {
-        console.error("Erreur API lors de la suppression :", err.message);
         throw err;
     }
 };
@@ -79,7 +75,6 @@ export const APICategories = async () => {
         const data = await response.json();
         return data;
     } catch (err) {
-        console.log("Erreur lors de la récupération des catégories : ", err.message);
         throw err;
     }
 };
@@ -103,7 +98,6 @@ export const APIAddPicture = async (formData) => {
         alert("Nouvelle photo ajoutée avec succès !");
         return data;
     } catch (err) {
-        console.log("Erreur lors de la récupération des catégories : ", err.message);
         throw err;
     }
 };
