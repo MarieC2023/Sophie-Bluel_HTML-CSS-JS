@@ -322,8 +322,15 @@ dialog::backdrop {
 	display: flex;
 	justify-content: center;
 	margin: 30px auto;
-	/* margin-bottom: 0; */
 	width: 75%;
+}
+
+.line2 {
+	border-top: 1px solid #B3B3B3;
+	display: flex;
+	justify-content: center;
+	margin: 30px auto;
+	width: 100%;
 }
 
 .btn {
